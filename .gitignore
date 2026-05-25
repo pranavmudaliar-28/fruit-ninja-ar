@@ -1,0 +1,32 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Node / build artifacts (in case you add tooling later)
+node_modules/
+dist/
+build/
+*.log
+npm-debug.log*
+.npm/
+.cache/
+
+# Local server / scratch
+.local/
+.tmp/
+tmp/
+
+# Backup files
+*.bak
+*.backup
+*.orig
