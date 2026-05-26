@@ -2,7 +2,7 @@
 
 A browser-based AR remake of Fruit Ninja. **No mouse, no controller — just your hand and a webcam.** A virtual katana follows your palm; swipe through the air to slice fruit on your screen. Single self-contained HTML file. No build step.
 
-🎮 **[Play it live →](https://pranavmudaliar-28.github.io/fruit-ninja-ar/)** *(enable GitHub Pages in repo settings to activate)*
+🎮 **[Play it live →](https://fruit-ninja-8i2upnkcp-pranavmudaliar36-gmailcoms-projects.vercel.app/)** *(enable GitHub Pages in repo settings to activate)*
 
 ---
 
