@@ -1966,7 +1966,6 @@
              data-ad-format="fluid"
              data-ad-client="ca-pub-3486794301895160"
              data-ad-slot="5115656534"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
     </div>
   </div>
@@ -2045,7 +2044,6 @@
              data-ad-format="autorelaxed"
              data-ad-client="ca-pub-3486794301895160"
              data-ad-slot="1176411522"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
     </div>
   </div>
@@ -2083,7 +2081,6 @@
              data-ad-slot="2349892399"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
     </div>
   </div>
@@ -4225,7 +4222,6 @@
 
         // ===== NEAR-MISS DETECTION =====
         // We track bombs that passed close to the blade without being sliced and flash a warning.
-        this._nearMissFlashEl = null;
         this._lastNearMissAt = 0;
 
         // ===== TRACKING INDICATOR =====
@@ -4326,7 +4322,15 @@
 
       showOverlay(id) {
         document.querySelectorAll('.overlay').forEach(o => o.classList.remove('active'));
-        if (id) document.getElementById(id).classList.add('active');
+        if (id) {
+          const el = document.getElementById(id);
+          el.classList.add('active');
+          // Lazy-push any AdSense units inside this overlay only once it is visible
+          // (avoids the availableWidth=0 error that fires when ads are in hidden containers)
+          el.querySelectorAll('.adsbygoogle:not([data-adsbygoogle-status])').forEach(() => {
+            (window.adsbygoogle = window.adsbygoogle || []).push({});
+          });
+        }
       }
 
       /* ===== LIFECYCLE ===== */
@@ -5030,8 +5034,10 @@
           }
           if (nearAny) {
             this._lastNearMissAt = now;
-            this._nearMissFlashEl.classList.add('active');
-            setTimeout(() => this._nearMissFlashEl.classList.remove('active'), 220);
+            if (this._nearMissFlashEl) {
+              this._nearMissFlashEl.classList.add('active');
+              setTimeout(() => this._nearMissFlashEl.classList.remove('active'), 220);
+            }
             this.spawnPopup(f.x, f.y - 60, 'CLOSE!', '#ffd700');
             break;
           }
